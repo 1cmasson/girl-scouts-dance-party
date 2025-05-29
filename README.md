@@ -68,3 +68,4 @@ yarn version 1.0.4
 With `1.0.4` replaced by the new version number that should be published.
 
 Note: make sure you are logged into `npm` first.  If not, the command may fail with a misleading `E404` error.  You can see if you're logged in with `yarn npm whoami`, and if not logged in, can can use `yarn npm login`.
+
