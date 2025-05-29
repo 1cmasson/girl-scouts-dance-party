@@ -31,6 +31,7 @@ jobs:
         run: | 
           mkdir -p build && cp -r public/* build/
           ls build
+          ls build/pages
       - name: Deploy Pages
         uses: JamesIves/github-pages-deploy-action@v4.2.2
         with:
