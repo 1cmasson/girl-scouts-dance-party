@@ -15,7 +15,10 @@ const nativeAPI = (window.nativeAPI = new DanceParty({
     }, 0),
   onInit: () => {
     document.querySelector('#run').style.display = 'inline';
-    runCode();
+    const currentURL = window.location.href;
+    const match = currentURL.match(/\/pages\/(.+?)\.html/);
+    const page = match ? match[1] : null;
+    runCode(page);
   },
   container: 'dance',
 }));
@@ -25,9 +28,9 @@ const nativeAPI = (window.nativeAPI = new DanceParty({
 // here because of a bug in Babel that tries to hoist the async function definition above
 // the prerequisite polyfill import, above.  This is fixed in Babel 7.
 // See https://github.com/babel/babel/issues/5085 and https://github.com/babel/babel/issues/6956
-const runCode = async function () {
+const runCode = async function (page) {
   await nativeAPI.ensureSpritesAreLoaded();
-
+  textareaCode.value = getCodeBlock(page);
   const {runUserSetup, runUserEvents, getCueList} = injectInterpreted(
     nativeAPI,
     interpreted,
@@ -44,15 +47,46 @@ const runCode = async function () {
   nativeAPI.play(jazzy_beats);
 };
 
-textareaCode.value =
-  textareaCode.value ||
-  `var cat = makeNewDanceSprite("CAT", null, {x: 200, y: 200});
+const getCodeBlock = page => {
+  switch (page) {
+    case 'sarah_appletree':
+      return `
+var cat = makeNewDanceSprite("CAT", null, {x: 200, y: 200});
 setBackgroundEffectWithPalette("disco_ball", "rand");
 
 atTimestamp(2, "measures", function () {
   changeMoveLR(cat, MOVES.ClapHigh, 1);
 });
 `;
+    case 'olivia_appletree':
+      return `
+var cat = makeNewDanceSprite("CAT", null, {x: 200, y: 200});
+setBackgroundEffectWithPalette("disco_ball", "rand");
+
+atTimestamp(2, "measures", function () {
+  changeMoveLR(cat, MOVES.ClapHigh, 1);
+});
+`;
+case 'emma_appletree':
+      return `
+var cat = makeNewDanceSprite("CAT", null, {x: 200, y: 200});
+setBackgroundEffectWithPalette("disco_ball", "rand");
+
+atTimestamp(2, "measures", function () {
+  changeMoveLR(cat, MOVES.ClapHigh, 1);
+});
+`;
+    default:
+      return `
+  var cat = makeNewDanceSprite("CAT", null, {x: 200, y: 200});
+setBackgroundEffectWithPalette("disco_ball", "rand");
+
+atTimestamp(2, "measures", function () {
+  changeMoveLR(cat, MOVES.ClapHigh, 1);
+});
+`;
+  }
+};
 
 document.querySelector('#run').addEventListener('click', () => {
   if (buttonRun.innerText === 'Reset') {

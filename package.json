@@ -34,7 +34,6 @@
     "babel-loader": "^8.0.6",
     "babelify": "^6.3.0",
     "buffer": "^6.0.3",
-    "canvas": "^2.11.2",
     "codecov": "^3.1.0",
     "coverage-istanbul-loader": "^3.0.5",
     "data-urls": "^1.1.0",
@@ -64,5 +63,7 @@
     "url": "https://github.com/code-dot-org/dance-party/issues"
   },
   "homepage": "https://github.com/code-dot-org/dance-party#readme",
-  "dependencies": {}
+  "dependencies": {
+    "canvas": "^3.1.0"
+  }
 }
