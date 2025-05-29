@@ -28,7 +28,7 @@ jobs:
       #   run: yarn run test
 
       - name: Set up pages
-        run: mkdir -p build && cp -r public/pages/* build/ && cp public/index.html build/
+        run: mkdir -p build && cp -r public/* build/
       - name: Deploy Pages
         uses: JamesIves/github-pages-deploy-action@v4.2.2
         with:
