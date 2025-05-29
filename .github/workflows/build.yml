@@ -28,9 +28,9 @@ jobs:
       #   run: yarn run test
 
       - name: Set up pages
-        run: mkdir -p pages && cp -r public/pages/* pages/ && cp public/index.html pages/
+        run: mkdir -p build && cp -r public/pages/* build/ && cp public/index.html build/
       - name: Deploy Pages
         uses: JamesIves/github-pages-deploy-action@v4.2.2
         with:
           branch: gh-pages # The branch the action should deploy to.
-          folder: pages # The folder the action should deploy.
+          folder: build # The folder the action should deploy.
