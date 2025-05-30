@@ -29,9 +29,10 @@ jobs:
 
       - name: Set up pages
         run: | 
-          mkdir -p build && cp -r public/* build/
+          mkdir -p build && cp -r public/* build/ && cp -r dist/* build/
           ls build
           ls build/pages
+
       - name: Deploy Pages
         uses: JamesIves/github-pages-deploy-action@v4.2.2
         with:
